@@ -20,14 +20,14 @@ In a typical cDNA-seq analysis pipeline, Restrander would be applied after basec
 
 ### Installation & Setup
 
-First, download this vignette so you can access the slices of data:
+First, download this vignette so you have access to the slices of data:
 
 ```bash
 git clone https://github.com/jakob-schuster/restrander-vignette.git
 cd restrander-vignette
 ```
 
-Then, download and compile Restrander:
+Then, download Restrander:
 
 ```bash
 # for the convenience of this vignette, 
@@ -37,7 +37,7 @@ cd restrander
 make
 ```
 
-With your Restrander download, you've also received configurations for several protocols in the `config` directory.
+The Restrander download also includes configurations for several protocols in the `config` directory.
 
 <table>
     <thead>
@@ -76,17 +76,48 @@ With your Restrander download, you've also received configurations for several p
 
 ### Basic restranding
 
-First, we'll try Restrander on some PCR-cDNAseq data, sequenced using SQK-PCS109 on PromethION. A tiny slice of 2000 reads is included with this vignette.
+First, we'll try Restrander on some PCR-cDNAseq data, sequenced using SQK-PCS109 on PromethION. A tiny sample of 2000 reads is included with this vignette. The sample can be found in `data/PCB109.fq.gz`.
 
-Run Restrander by giving it an input file to process, an output destination to write to, and a configuration file to follow.
+Run Restrander by giving it the input file to process, the output destination to write to, and a configuration file to follow.
 
 ```bash
-# run this in the directory of this vignette - the path names
+# run this in the directory of this vignette
+# if you're getting errors, make sure the path names are correct!
 ./restrander/restrander \
     data/PCB109.fq.gz \
     data/PCB109-restranded.fq.gz \
     restrander/config/PCB109.json
 ```
+
+On your terminal, you'll see some header information confirming the inputs to Restrander, and also some stats underneath. These stats are useful, as they quantify the artefacts and orientations of the reads, and they indicate how well Restrander performed. 
+
+The exact results may look slightly different, but they should be similar to this:
+
+```json
+{
+    "stats": {
+        "artefactStats": {
+            "no artefact": 20
+        },
+        "strandStats": {
+            "+": 7,
+            "-": 13
+        },
+        "totalReads": 20
+    }
+}
+```
+
+These performance stats are formatted as a json, and it's a good idea to pipe them out using `>` whenever you run Restrander:
+
+```
+./restrander/restrander \
+    data/PCB109.fq.gz \
+    data/PCB109-restranded.fq.gz \
+    restrander/config/PCB109.json \
+    > output-stats.json
+```
+
 
 ### Lower quality data
 
