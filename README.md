@@ -4,6 +4,18 @@
 
 A vignette and tutorial for the read orientation software, [Restrander](https://github.com/jakob-schuster/restrander).
 
+## Table of Contents
+
+- [Introduction](#introduction)
+- [Usage](#usage)
+    - [Installation & setup](#installation--setup)
+        - [Configuration files](#configuration-files)
+    - [Basic Restranding](#basic-restranding)
+        - [Output statistics](#output-statistics)
+    - [Lower quality data](#lower-quality-data)
+    - [Trimmed data](#trimmed-data)
+
+
 ## Introduction
 
 In transcriptomic analyses, it is helpful to keep track of the strand of the RNA molecules. However, Oxford Nanopore long-read cDNA sequencing protocols generate reads that correspond to either the first or second-strand cDNA, therefore the strandedness of the initial transcript has to be inferred bioinformatically.
@@ -17,6 +29,8 @@ Only well-formed reads are included in the main output file; reads whose strand 
 In a typical cDNA-seq analysis pipeline, Restrander would be applied after basecalling, and before mapping.
 
 ## Usage
+
+Through this vignette, we will go through some usage examples for Restrander. We'll use tiny slices of data to illustrate the features.
 
 ### Installation & Setup
 
@@ -32,9 +46,9 @@ cd restrander
 make
 ```
 
-#### Configuration
+#### Configuration files
 
-The Restrander download also includes configurations for several protocols in the `config` directory.
+Restrander download includes configurations for several protocols in the `config` directory.
 
 <table>
     <thead>
