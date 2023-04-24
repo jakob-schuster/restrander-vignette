@@ -18,7 +18,7 @@ In a typical cDNA-seq analysis pipeline, Restrander would be applied after basec
 
 ## Usage
 
-### 0. Installation
+### Installation
 
 Download and compile Restrander using the following command:
 
@@ -28,7 +28,27 @@ cd restrander
 make
 ```
 
-Configuration files for several protocols come with the Restrander download, in the `config` directory:
+Configurations for several protocols come with the Restrander download, in the `config` directory:
+
+<table>
+    <thead>
+        <tr>
+            <th>Config file</th>
+            <th>Intended use</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>`PCB109.json`</td>
+            <td>ONT PCB109 data</td>
+        </tr>
+        <tr>
+            <td>`PCB111.json`</td>
+            <td>ONT PCB111 data</td>
+        </tr>
+    </tbody>
+</table>
+
 - `PCB109.json`
 - `PCB111.json`
 - `10X-3prime.json`
@@ -36,12 +56,12 @@ Configuration files for several protocols come with the Restrander download, in 
 - `NEBNext.json`
 - `trimmed.json`
 
-### 1. Your first restrand
+### Basic restranding
 
-First, we'll try Restrander on some PCR-cDNAseq data, sequenced using SQK-PCS109 on PromethION.
+First, we'll try Restrander on some PCR-cDNAseq data, sequenced using SQK-PCS109 on PromethION. A tiny slice of 2000 reads is included with this vignette.
 
-### 2. Lower quality data
+### Lower quality data
 
-### 3. Trimmed data
+### Trimmed data
 
-### 4. 
+###  
