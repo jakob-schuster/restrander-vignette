@@ -39,22 +39,31 @@ Configurations for several protocols come with the Restrander download, in the `
     </thead>
     <tbody>
         <tr>
-            <td>`PCB109.json`</td>
-            <td>ONT PCB109 data</td>
+            <td>PCB109.json</td>
+            <td></td>
         </tr>
         <tr>
-            <td>`PCB111.json`</td>
-            <td>ONT PCB111 data</td>
+            <td>PCB111.json</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>10X-3prime.json</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>10X-5prime.json</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>NEBNext.json</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>trimmed.json</td>
+            <td></td>
         </tr>
     </tbody>
 </table>
-
-- `PCB109.json`
-- `PCB111.json`
-- `10X-3prime.json`
-- `10X-5prime.json`
-- `NEBNext.json`
-- `trimmed.json`
 
 ### Basic restranding
 
