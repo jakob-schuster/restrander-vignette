@@ -10,7 +10,7 @@ A vignette and tutorial for the read orientation software, [Restrander](https://
 - [Usage](#usage)
     - [Installation & setup](#installation--setup)
         - [Configuration files](#configuration-files)
-    - [Basic Restranding](#basic-restranding)
+    - [Basic restranding](#basic-restranding)
         - [Output statistics](#output-statistics)
     - [Lower quality data](#lower-quality-data)
     - [Trimmed data](#trimmed-data)
@@ -30,12 +30,12 @@ In a typical cDNA-seq analysis pipeline, Restrander would be applied after basec
 
 ## Usage
 
-Through this vignette, we will go through some usage examples for Restrander. We'll use tiny slices of data to illustrate the features.
+In this vignette, we will go through some usage examples for Restrander. We'll use tiny slices of data to illustrate the features.
 
 ### Installation & Setup
 
 ```bash
-# download this vignette, so you have access to the data slices
+# download the vignette, so you have access to the data slices
 git clone https://github.com/jakob-schuster/restrander-vignette.git
 cd restrander-vignette
 
@@ -48,7 +48,7 @@ make
 
 #### Configuration files
 
-Restrander download includes configurations for several protocols in the `config` directory.
+The Restrander download includes configurations for several protocols in the `config` directory. Because each sequencing protocol uses its own set of primers, you'll need to use the configuration file specific to your protocol.
 
 <table>
     <thead>
