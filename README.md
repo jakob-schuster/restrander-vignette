@@ -20,17 +20,11 @@ In a typical cDNA-seq analysis pipeline, Restrander would be applied after basec
 
 ### Installation & Setup
 
-#### Downloading this vignette
-
 ```bash
 # download this vignette, so you have access to the data slices
 git clone https://github.com/jakob-schuster/restrander-vignette.git
 cd restrander-vignette
-```
 
-#### Installing Restrander
-
-```bash
 # for the convenience of this vignette, 
 # install Restrander right here in the vignette repo
 git clone https://github.com/jakob-schuster/restrander.git
