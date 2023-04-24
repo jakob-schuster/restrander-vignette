@@ -18,11 +18,20 @@ In a typical cDNA-seq analysis pipeline, Restrander would be applied after basec
 
 ## Usage
 
-### Installation
+### Installation and Setup
+
+First, download this vignette so you can access the slices of data:
+
+```bash
+git clone https://github.com/jakob-schuster/restrander-vignette.git
+cd restrander-vignette
+```
 
 Download and compile Restrander using the following command:
 
 ```bash
+# for the convenience of this vignette, 
+# install Restrander right here in the vignette repo
 git clone https://github.com/jakob-schuster/restrander.git
 cd restrander
 make
@@ -68,6 +77,16 @@ Configurations for several protocols come with the Restrander download, in the `
 ### Basic restranding
 
 First, we'll try Restrander on some PCR-cDNAseq data, sequenced using SQK-PCS109 on PromethION. A tiny slice of 2000 reads is included with this vignette.
+
+Run Restrander by giving it an input file to process, an output destination to write to, and a configuration file to follow.
+
+```bash
+# run this in the directory of this vignette - the path names
+./restrander/restrander \
+    data/PCB109.fq.gz \
+    data/PCB109-restranded.fq.gz \
+    restrander/config/PCB109.json
+```
 
 ### Lower quality data
 
