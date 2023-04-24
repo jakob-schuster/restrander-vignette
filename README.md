@@ -2,7 +2,7 @@
     <img src="figures/logo.png" title="Restrander" alt="Restrander" width="300">
 </p>
 
-A vignette and tutorial for the read orientation software, [Restrander](https://github.com/jakob-schuster/restrander).
+A vignette, tutorial and guide for the read orientation software, [Restrander](https://github.com/jakob-schuster/restrander).
 
 ## Table of Contents
 
@@ -89,7 +89,7 @@ Since each sequencing protocol uses its own set of primers, you'll need to use t
 
 First, we'll try Restrander on some PCR-cDNAseq data, sequenced using SQK-PCS109 on PromethION. A tiny sample of 2000 reads is included with this vignette. The sample can be found in `data/PCB109.fq.gz`.
 
-Run Restrander by giving it the input file to process, the output destination to write to, and a configuration file to follow.
+Run Restrander by giving it the input file to process, the output destination to write to, and a configuration file to use.
 
 ```bash
 # run this in the directory of this vignette
@@ -102,9 +102,7 @@ Run Restrander by giving it the input file to process, the output destination to
 
 #### Output statistics
 
-On your terminal, you'll see some header information confirming the inputs to Restrander, and also some stats underneath. These stats are useful, as they quantify the read orientations and artefact presence in the input data, as well as indicating how well Restrander performed. 
-
-The exact results may look slightly different, but they should be similar to this:
+On your terminal, underneath the diagnostic information about Restrander, you'll see some output stats. They should look similar to this:
 
 ```json
 {
@@ -121,7 +119,7 @@ The exact results may look slightly different, but they should be similar to thi
 }
 ```
 
-These performance stats are formatted as a json, and it's a good idea to pipe them out using `>` whenever you run Restrander:
+These stats are useful, as they quantify the read orientations and artefact presence in the input data, as well as indicating how well Restrander performed. The stats are formatted as a json, and it's a good idea to pipe them out using `>` whenever you run Restrander:
 
 ```bash
 ./restrander/restrander \
