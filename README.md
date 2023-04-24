@@ -37,6 +37,8 @@ cd restrander
 make
 ```
 
+#### Configuration
+
 The Restrander download also includes configurations for several protocols in the `config` directory.
 
 <table>
@@ -89,7 +91,9 @@ Run Restrander by giving it the input file to process, the output destination to
     restrander/config/PCB109.json
 ```
 
-On your terminal, you'll see some header information confirming the inputs to Restrander, and also some stats underneath. These stats are useful, as they quantify the artefacts and orientations of the reads, and they indicate how well Restrander performed. 
+#### Output statistics
+
+On your terminal, you'll see some header information confirming the inputs to Restrander, and also some stats underneath. These stats are useful, as they quantify the read orientations and artefact presence in the input data, as well as indicating how well Restrander performed. 
 
 The exact results may look slightly different, but they should be similar to this:
 
@@ -110,12 +114,12 @@ The exact results may look slightly different, but they should be similar to thi
 
 These performance stats are formatted as a json, and it's a good idea to pipe them out using `>` whenever you run Restrander:
 
-```
+```bash
 ./restrander/restrander \
     data/PCB109.fq.gz \
     data/PCB109-restranded.fq.gz \
     restrander/config/PCB109.json \
-    > output-stats.json
+        > output-stats.json
 ```
 
 
