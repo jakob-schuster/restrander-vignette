@@ -9,7 +9,7 @@ A vignette and tutorial for the read orientation software, [Restrander](https://
 - [Introduction](#introduction)
 - [Usage](#usage)
     - [Installation & setup](#installation--setup)
-        - [Configuration files](#configuration-files)
+    - [Configuration files](#configuration-files)
     - [Basic restranding](#basic-restranding)
         - [Output statistics](#output-statistics)
     - [Lower quality data](#lower-quality-data)
@@ -46,9 +46,9 @@ cd restrander
 make
 ```
 
-#### Configuration files
+### Configuration files
 
-The Restrander download includes configurations for several protocols in the `config` directory. Because each sequencing protocol uses its own set of primers, you'll need to use the configuration file specific to your protocol.
+Since each sequencing protocol uses its own set of primers, you'll need to use the configuration file specific to your protocol. The Restrander download includes configurations for several protocols in the `config` directory. 
 
 <table>
     <thead>
