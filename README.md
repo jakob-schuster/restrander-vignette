@@ -18,7 +18,7 @@ In a typical cDNA-seq analysis pipeline, Restrander would be applied after basec
 
 ## Usage
 
-### Installation and Setup
+### Installation & Setup
 
 First, download this vignette so you can access the slices of data:
 
@@ -27,7 +27,7 @@ git clone https://github.com/jakob-schuster/restrander-vignette.git
 cd restrander-vignette
 ```
 
-Download and compile Restrander using the following command:
+Then, download and compile Restrander:
 
 ```bash
 # for the convenience of this vignette, 
@@ -37,7 +37,7 @@ cd restrander
 make
 ```
 
-Configurations for several protocols come with the Restrander download, in the `config` directory:
+With your Restrander download, you've also received configurations for several protocols in the `config` directory.
 
 <table>
     <thead>
