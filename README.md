@@ -122,7 +122,7 @@ Since each library preparation protocol uses its own set of primers, you'll need
         </tr>
         <tr>
             <td>trimmed.json</td>
-            <td>Trimmed reads which do not have primers, only polyA/polyT tails. Hence, this pipeline only searches for polyA/T tails.</td>
+            <td>Trimmed reads which do not have primers, only polyA/T tails.</td>
         </tr>
     </tbody>
 </table>
