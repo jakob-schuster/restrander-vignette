@@ -121,7 +121,7 @@ Since each sequencing protocol uses its own set of primers, you'll need to use t
         </tr>
         <tr>
             <td>NEBNext.json</td>
-            <td>[NEBNext single-cell/low input RNA library prep kit](https://www.nebiolabs.com.au/products/e6420-nebnext-single-cell-low-input-rna-library-prep-kit-for-illumina#Product%20Information)</td>
+            <td><a href="https://www.nebiolabs.com.au/products/e6420-nebnext-single-cell-low-input-rna-library-prep-kit-for-illumina#Product%20Information">NEBNext single-cell/low input RNA library prep kit</a></td>
         </tr>
         <tr>
             <td>trimmed.json</td>
