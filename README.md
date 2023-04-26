@@ -7,17 +7,15 @@ A vignette, tutorial and guide for the read orientation software, [Restrander](h
 ## Table of Contents
 
 - [Introduction](#introduction)
-- [Usage](#usage)
+- [General usage](#general-usage)
     - [Installation & setup](#installation--setup)
-    - [Configuration files](#configuration-files)
     - [Basic restranding](#basic-restranding)
         - [Output statistics](#output-statistics)
-    - [Customising the configuration](#customising-the-configuration)
-        - [Enabling artefact detection](#artefact-detection)
-        - [Enabling artefact detection](#artefact-detection)
-    - [Lower quality data](#lower-quality-data)
-    - [Trimmed data](#trimmed-data)
-
+    - [Configuring for different sequencing protocols](#configuring-for-different-sequencing-protocols)
+- [Advanced usage](#advanced-usage)
+    - [Custom configurations](#custom-configurations)
+        - [Disabling artefact detection](#disabling-artefact-detection)
+        - [Using custom primers](#using-custom-primers)
 
 ## Introduction
 
@@ -31,11 +29,11 @@ Only well-formed reads are included in the main output file; reads whose strand 
 
 In a typical cDNA-seq analysis pipeline, Restrander would be applied after basecalling, and before mapping.
 
-## Usage
+## General usage
 
 In this vignette, we will go through some usage examples for Restrander. We'll use tiny slices of data to illustrate the features.
 
-### Installation & Setup
+### Installation & setup
 
 ```bash
 # download the vignette, so you have access to the data slices
@@ -48,45 +46,6 @@ git clone https://github.com/jakob-schuster/restrander.git
 cd restrander
 make
 ```
-
-### Configuration files
-
-Since each sequencing protocol uses its own set of primers, you'll need to use the configuration file specific to your protocol. The Restrander download includes configurations for several protocols in the `config` directory. 
-
-<table>
-    <thead>
-        <tr>
-            <th>Config file</th>
-            <th>Intended use</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>PCB109.json</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>PCB111.json</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>10X-3prime.json</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>10X-5prime.json</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>NEBNext.json</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>trimmed.json</td>
-            <td></td>
-        </tr>
-    </tbody>
-</table>
 
 ### Basic restranding
 
@@ -132,7 +91,50 @@ These statistics are useful, as they quantify the read orientations and artefact
         > output-stats.json
 ```
 
-### Customising the configuration
+### Configuring for different sequencing protocols
+
+Since each sequencing protocol uses its own set of primers, you'll need to use the configuration file specific to your protocol. The Restrander download includes configurations for several protocols in the `config` directory. 
+
+<table>
+    <thead>
+        <tr>
+            <th>Config file</th>
+            <th>Intended use</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>PCB109.json</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>PCB111.json</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>10X-3prime.json</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>10X-5prime.json</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>NEBNext.json</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>trimmed.json</td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+
+Our file `data/10X.fq.gz` was sequenced using the 10X genomics
+
+## Advanced usage
+
+### Custom configurations
 
 The configuration file describes the full pipeline of operations used by Restrander to classify each read. By tweaking their config file, users can specialise Restrander's behaviour to their needs. The config file is in the `json` format:
 
@@ -181,5 +183,5 @@ Let's change these parameters. Create a copy of `PCB109.json`. Give it some new 
 
 Looking at `output-stats.json`, we see that artefacts are no longer being found and quantified. Also, since `"exclude-unknowns": false`, no unknowns file was created - all successfully and unsuccessfully oriented reads are included in `PCB109-restranded-new-config.fq.gz`.
 
-### Using different primers
+#### Using custom primers
 
