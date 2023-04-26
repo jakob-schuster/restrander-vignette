@@ -105,11 +105,11 @@ Since each sequencing protocol uses its own set of primers, you'll need to use t
     <tbody>
         <tr>
             <td>PCB109.json</td>
-            <td></td>
+            <td><a href="https://store.nanoporetech.com/cdna-pcr-sequencing-kit.html">Oxford Nanopore Technologies cDNA-PCR sequencing kit SQK-PCS109</a></td>
         </tr>
         <tr>
             <td>PCB111.json</td>
-            <td></td>
+            <td><a href="https://store.nanoporetech.com/productDetail/?id=cdna-pcr-sequencing-kit111">Oxford Nanopore Technologies cDNA-PCR sequencing kit SQK-PCS111</a></td>
         </tr>
         <tr>
             <td>10X-3prime.json</td>
@@ -117,7 +117,7 @@ Since each sequencing protocol uses its own set of primers, you'll need to use t
         </tr>
         <tr>
             <td>10X-5prime.json</td>
-            <td></td>
+            <td><a></a></td>
         </tr>
         <tr>
             <td>NEBNext.json</td>
