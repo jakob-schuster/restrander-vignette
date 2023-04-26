@@ -131,9 +131,7 @@ These statistics are useful, as they quantify the read orientations and artefact
 
 #### Customising the configuration
 
-In the previous example, our output stats indicate that some artefacts are being identified in our data. Let's look inside the config file that we're giving Restrander.
-
-Opening `restrander/config/PCB109.json`, we see:
+In the previous example, our output stats indicate that some artefacts are being identified in our data. This setting, and many others, can be changed in the configuration file, which describes the full pipeline of operations Restrander will use to classify each read. Opening `restrander/config/PCB109.json`, we see:
 
 ```json
 {
@@ -158,9 +156,9 @@ Opening `restrander/config/PCB109.json`, we see:
 }
 ```
 
+While searching for primers, the line `"report-artefacts": true` specifies that we would like to quantify TSO and RTP primer artefacts as we parse the input file. The line `"exclude-unknowns": true` means that any unknown reads should be filtered out of the input, into a separate output file. If you check your output directory, you'll find them in an `unknowns.fq.gz` file. 
 
-
+Let's try changing these parameters. Create a copy of `PCB109.json`, giving it some new name. Change `report-artefacts` to `false` and `exclude-unknowns` to `false`.
 
 ### Using different primers
 
-Now, we'll try 
