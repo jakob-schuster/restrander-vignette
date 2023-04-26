@@ -11,11 +11,8 @@ A vignette, tutorial and guide for the read orientation software, [Restrander](h
     - [Installation & setup](#installation--setup)
     - [Basic restranding](#basic-restranding)
         - [Output statistics](#output-statistics)
-    - [Configuring for different sequencing protocols](#configuring-for-different-sequencing-protocols)
-- [Advanced usage](#advanced-usage)
-    - [Custom configurations](#custom-configurations)
-        - [Disabling artefact detection](#disabling-artefact-detection)
-        - [Using custom primers](#using-custom-primers)
+    - [Configuration files](#configuration-files)
+        - [Switching configurations](#switching-configurations)
 
 ## Introduction
 
@@ -130,7 +127,7 @@ Since each library preparation protocol uses its own set of primers, you'll need
     </tbody>
 </table>
 
-#### Switching to a different configuration
+#### Switching configurations
 
 Our file `data/10x.fq.gz` is a slice of single-cell long-read RNA-seq data, prepared using the 10x Genomics Chromium 3' kit. For demonstration, let's try using the default `PCB109.json`:
 
@@ -193,57 +190,3 @@ More reads are classified, and we can see that there were a lot of primer artefa
 ```
 
 Since Restrander doesn't know which library preparation kit was used to produce your data, it won't fail when provided with the wrong config. Always double-check which config file you're providing, or your results may be inaccurate!
-
-## Advanced usage
-
-### Custom configurations
-
-The configuration file describes the full pipeline of operations used by Restrander to classify each read. By tweaking their config file, users can specialise Restrander's behaviour to their needs. The config file is in the `json` format:
-
-```json
-{
-    "name": "PCB109",
-    "description": "The default configuration. First applies PolyA/PolyT classification, then looks for the standard TSO (SSP) and RTP (VNP) used in PCB109 chemistry.",
-    "pipeline": [
-        {
-            "type": "poly",
-            "tail-length": 12,
-            "search-size": 200
-        },
-        {
-            "type": "primer",
-            "tso": "TTTCTGTTGGTGCTGATATTGCTGGG",
-            "rtp": "ACTTGCCTGTCGCTCTATCTTCTTTTTTTTTT",
-            "report-artefacts": true
-        }
-    ],
-    "silent": false,
-    "exclude-unknowns": false,
-    "error-rate": 0.25
-}
-```
-
-When you customise your configuration, it's a good idea to create a named copy of your old config, rather than modify the default configuration directly.
-
-#### Disabling artefact detection and including unknowns
-
-In the first example, our output stats indicate that Restrander is searching for TSO-TSO and RTP-RTP artefacts in our input data. If we're not interested in this feature, we can disable it in the config.
-
-Looking closely at the config:
-- `report-artefacts` specifies whether, while searching for primers, we would like to quantify TSO and RTP artefacts as we parse the input file. 
-- `exclude-unknowns` specifies whether all unknown reads (including primer artefacts) should be filtered into a separate output file. If you check your output directory, you'll find them in an `unknowns.fq.gz` file.
-
-Let's change these parameters. Create a copy of `PCB109.json`. Give it some new name like `my-custom-PCB109.json`, and tweak the lines so that `"report-artefacts": false` and `"exclude-unknowns": false`. Now, run Restrander with this new config:
-
-```bash
-./restrander/restrander \
-    data/PCB109.fq.gz \
-    data/PCB109-restranded-new-config.fq.gz \
-    restrander/config/my-custom-PCB109.json \
-        > output-stats.json
-```
-
-Looking at `output-stats.json`, we see that artefacts are no longer being found and quantified. Also, since `"exclude-unknowns": false`, no unknowns file was created - all successfully and unsuccessfully oriented reads are included in `PCB109-restranded-new-config.fq.gz`.
-
-#### Using custom primers
-
