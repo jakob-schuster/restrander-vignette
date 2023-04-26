@@ -131,15 +131,15 @@ Since each library preparation protocol uses its own set of primers, you'll need
 
 Our file `data/10x.fq.gz` is a slice of single-cell long-read RNA-seq data, prepared using the 10x Genomics Chromium 3' kit. It's important to use the appropriate config file for your library prep kit. If Restrander is configured incorrectly, the point of failure may not be obvious. For demonstration, let's try using the default `PCB109.json`:
 
+**Input**
 ```bash
-# input:
 ./restrander/restrander \
     data/10x.fq.gz \
     data/10x-restranded-wrong-primers.fq.gz \
     restrander/config/PCB109.json \
         > 10x-wrong-primers-stats.json
-# output:
 ```
+**Output**
 ```json
 {
     "stats": {
@@ -162,15 +162,15 @@ Restrander runs without error, and looking at the output stats, we see that most
 
 Now, run Restrander with the right config file, `10X-3prime.json`:
 
+**Input**
 ```bash
-# input:
 ./restrander/restrander \
     data/10x.fq.gz \
     data/10x-restranded-correct-primers.fq.gz \
     restrander/config/10X-3prime.json \
         > 10x-correct-primers-stats.json
-# output:
 ```
+**Output**
 ```json
 {
     "stats": {
