@@ -134,7 +134,7 @@ These statistics are useful, as they quantify the read orientations and artefact
 
 ### Customising the configuration
 
-The configuration file describes the full pipeline of operations used by Restrander to classify reads. By tweaking their config file, users can specialise Restrander's behaviour to their needs. The config file is in the `json` format:
+The configuration file describes the full pipeline of operations used by Restrander to classify each read. By tweaking their config file, users can specialise Restrander's behaviour to their needs. The config file is in the `json` format:
 
 ```json
 {
@@ -159,9 +159,11 @@ The configuration file describes the full pipeline of operations used by Restran
 }
 ```
 
+When you customise your configuration, it's a good idea to create a named copy of your old config, rather than modify the default configuration directly.
+
 #### Disabling artefact detection
 
-In our first example, the output stats indicate that Restrander is identifying artefacts in our input data. We can disable this function through the config.
+In the first example, our output stats indicate that Restrander is searching for TSO-TSO and RTP-RTP artefacts in our input data. If we're not interested in this feature, we can disable it in the config.
 
 Looking closely at the config:
 - `"report-artefacts": true` specifies that, while searching for primers, we would like to quantify TSO and RTP artefacts as we parse the input file. 
@@ -178,8 +180,6 @@ Let's change these parameters. Create a copy of `PCB109.json`. Give it some new 
 ```
 
 Looking at `output-stats.json`, we see that artefacts are no longer being found and quantified. Also, since `"exclude-unknowns": false`, no unknowns file was created - all successfully and unsuccessfully oriented reads are included in `PCB109-restranded-new-config.fq.gz`.
-
-When you create a custom configuration, it's a good idea to store it with the 
 
 ### Using different primers
 
