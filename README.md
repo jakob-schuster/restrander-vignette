@@ -163,13 +163,13 @@ The configuration file describes the full pipeline of operations used by Restran
 
 When you customise your configuration, it's a good idea to create a named copy of your old config, rather than modify the default configuration directly.
 
-#### Disabling artefact detection
+#### Disabling artefact detection and including unknowns
 
 In the first example, our output stats indicate that Restrander is searching for TSO-TSO and RTP-RTP artefacts in our input data. If we're not interested in this feature, we can disable it in the config.
 
 Looking closely at the config:
-- `"report-artefacts": true` specifies that, while searching for primers, we would like to quantify TSO and RTP artefacts as we parse the input file. 
-- `"exclude-unknowns": true` means that any unknown reads (including primer artefacts) should be filtered out of the input, into a separate output file. If you check your output directory, you'll find them in an `unknowns.fq.gz` file.
+- `report-artefacts` specifies whether, while searching for primers, we would like to quantify TSO and RTP artefacts as we parse the input file. 
+- `exclude-unknowns` specifies whether all unknown reads (including primer artefacts) should be filtered into a separate output file. If you check your output directory, you'll find them in an `unknowns.fq.gz` file.
 
 Let's change these parameters. Create a copy of `PCB109.json`. Give it some new name like `my-custom-PCB109.json`, and tweak the lines so that `"report-artefacts": false` and `"exclude-unknowns": false`. Now, run Restrander with this new config:
 
