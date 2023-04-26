@@ -113,15 +113,15 @@ Since each sequencing protocol uses its own set of primers, you'll need to use t
         </tr>
         <tr>
             <td>10X-3prime.json</td>
-            <td></td>
+            <td><a href="https://www.10xgenomics.com/support/single-cell-gene-expression/documentation/steps/library-prep/chromium-single-cell-3-reagent-kits-user-guide-v-3-1-chemistry">10x Genomics Chromium 3’ kit</a></td>
         </tr>
         <tr>
             <td>10X-5prime.json</td>
-            <td><a></a></td>
+            <td><a href="https://www.10xgenomics.com/support/single-cell-immune-profiling/documentation/steps/library-prep/chromium-single-cell-5-reagent-kits-user-guide-v-2-chemistry-dual-index">10x Genomics Chromium 5’ kit</a></td>
         </tr>
         <tr>
             <td>NEBNext.json</td>
-            <td><a href="https://www.nebiolabs.com.au/products/e6420-nebnext-single-cell-low-input-rna-library-prep-kit-for-illumina#Product%20Information">NEBNext single-cell/low input RNA library prep kit</a></td>
+            <td><a href="https://www.nebiolabs.com.au/products/e6420-nebnext-single-cell-low-input-rna-library-prep-kit-for-illumina#Product%20Information">New England Biolabs NEBNext single-cell/low input RNA library prep kit</a></td>
         </tr>
         <tr>
             <td>trimmed.json</td>
