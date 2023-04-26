@@ -7,7 +7,7 @@ A vignette, tutorial and guide for the read orientation software, [Restrander](h
 ## Table of Contents
 
 - [Introduction](#introduction)
-- [General usage](#general-usage)
+- [Usage](#usage)
     - [Installation & setup](#installation--setup)
     - [Basic restranding](#basic-restranding)
         - [Output statistics](#output-statistics)
@@ -26,7 +26,7 @@ Only well-formed reads are included in the main output file; reads whose strand 
 
 In a typical cDNA-seq analysis pipeline, Restrander would be applied after basecalling, and before mapping.
 
-## General usage
+## Usage
 
 In this vignette, we will go through some usage examples for Restrander. We'll use tiny slices of data to illustrate the features.
 
