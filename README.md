@@ -102,7 +102,7 @@ Run Restrander by giving it the input file to process, the output destination to
 
 #### Output statistics
 
-On your terminal, underneath the diagnostic information about Restrander, you'll see some output stats. They should look similar to this:
+On your terminal, underneath the diagnostic information about Restrander, you'll see some output statistics. They should look similar to this:
 
 ```json
 {
@@ -119,7 +119,7 @@ On your terminal, underneath the diagnostic information about Restrander, you'll
 }
 ```
 
-These stats are useful, as they quantify the read orientations and artefact presence in the input data, as well as indicating how well Restrander performed. The stats are formatted as a json, and it's a good idea to pipe them out using `>` whenever you run Restrander:
+These statistics are useful, as they quantify the read orientations and artefact presence in the input data, as well as indicating how well Restrander performed. The stats are formatted as a json, and it's a good idea to pipe them out using `>` whenever you run Restrander:
 
 ```bash
 ./restrander/restrander \
@@ -129,9 +129,38 @@ These stats are useful, as they quantify the read orientations and artefact pres
         > output-stats.json
 ```
 
+#### Customising the configuration
 
-### Lower quality data
+In the previous example, our output stats indicate that some artefacts are being identified in our data. Let's look inside the config file that we're giving Restrander.
 
-### Trimmed data
+Opening `restrander/config/PCB109.json`, we see:
 
-###  
+```json
+{
+    "name": "PCB109",
+    "description": "The default configuration. First applies PolyA/PolyT classification, then looks for the standard TSO (SSP) and RTP (VNP) used in PCB109 chemistry.",
+    "pipeline": [
+        {
+            "type": "poly",
+            "tail-length": 12,
+            "search-size": 200
+        },
+        {
+            "type": "primer",
+            "tso": "TTTCTGTTGGTGCTGATATTGCTGGG",
+            "rtp": "ACTTGCCTGTCGCTCTATCTTCTTTTTTTTTT",
+            "report-artefacts": true
+        }
+    ],
+    "silent": false,
+    "exclude-unknowns": true,
+    "error-rate": 0.25
+}
+```
+
+
+
+
+### Using different primers
+
+Now, we'll try 
