@@ -91,7 +91,7 @@ These statistics are useful, as they quantify the read orientations and artefact
         > output-stats.json
 ```
 
-### Configuring for different protocols
+### Configuration files
 
 Since each library preparation protocol uses its own set of primers, you'll need to provide Restrander with the configuration file specific to your protocol. The Restrander download includes configurations for several protocols in the `config` directory. 
 
@@ -130,6 +130,8 @@ Since each library preparation protocol uses its own set of primers, you'll need
     </tbody>
 </table>
 
+#### Switching to a different configuration
+
 Our file `data/10x.fq.gz` is a slice of single-cell long-read RNA-seq data, prepared using the 10x Genomics Chromium 3' kit. For demonstration, let's try using the default `PCB109.json`:
 
 ```bash
@@ -140,7 +142,7 @@ Our file `data/10x.fq.gz` is a slice of single-cell long-read RNA-seq data, prep
         > 10x-wrong-primers-stats.json
 ```
 
-Looking at the output stats, we see that most reads were still classified, due to the polyA/T tail presence common across both protocols. However, there's a higher number of unknown reads than we would like, and there's almost no primer artefacts since we were searching for the wrong primers:
+Looking at the output stats, we see that most reads were still classified due to the polyA/T tail presence common across both protocols. However, there's a high number of unknown reads, and the number of primer artefacts is suspiciously low since we were searching for the wrong primers:
 
 ```json
 {
@@ -170,7 +172,7 @@ Now, try with the right config file, `10X-3prime.json`:
         > 10x-correct-primers-stats.json
 ```
 
-More reads are categorised, and we can see that there were a lot of primer artefacts present in the input file:
+More reads are classified, and we can see that there were a lot of primer artefacts present in the input file:
 
 ```json
 {
@@ -190,6 +192,7 @@ More reads are categorised, and we can see that there were a lot of primer artef
 }
 ```
 
+Since Restrander doesn't know which library preparation kit was used to produce your data, it won't fail when provided with the wrong config. Always double-check which config file you're providing, or your results may be inaccurate!
 
 ## Advanced usage
 
