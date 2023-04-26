@@ -129,7 +129,7 @@ Since each library preparation protocol uses its own set of primers, you'll need
 
 #### Switching configurations
 
-Our file `data/10x.fq.gz` is a slice of single-cell long-read RNA-seq data, prepared using the 10x Genomics Chromium 3' kit. It's important to use the right config file for your library prep kit, and the results of incorrect configuration aren't immediately obvious. For demonstration, let's try using the default `PCB109.json`:
+Our file `data/10x.fq.gz` is a slice of single-cell long-read RNA-seq data, prepared using the 10x Genomics Chromium 3' kit. It's important to use the appropriate config file for your library prep kit. If Restrander is configured incorrectly, the point of failure may not be obvious. For demonstration, let's try using the default `PCB109.json`:
 
 ```bash
 ./restrander/restrander \
@@ -138,8 +138,6 @@ Our file `data/10x.fq.gz` is a slice of single-cell long-read RNA-seq data, prep
     restrander/config/PCB109.json \
         > 10x-wrong-primers-stats.json
 ```
-
-Restrander runs without error, and looking at the output stats, we see that most reads have been successfully classified - this is due to the polyA/T tail presence common to reads across both protocols. However, there's a high number of unknown reads, and the number of primer artefacts is suspiciously low, since we've provided the wrong primers:
 
 ```json
 {
@@ -159,6 +157,8 @@ Restrander runs without error, and looking at the output stats, we see that most
 }
 ```
 
+Restrander runs without error, and looking at the output stats, we see that most reads have been successfully classified - this is due to the polyA/T tail presence common to reads across both protocols. However, there's a high number of unknown reads, and the number of primer artefacts is suspiciously low, since we've provided the wrong primers.
+
 Now, run Restrander with the right config file, `10X-3prime.json`:
 
 ```bash
@@ -168,9 +168,6 @@ Now, run Restrander with the right config file, `10X-3prime.json`:
     restrander/config/10X-3prime.json \
         > 10x-correct-primers-stats.json
 ```
-
-More reads are classified, and now we can see most of the unknown reads are explained by the high volume of primer artefacts present in the input file:
-
 ```json
 {
     "stats": {
@@ -188,5 +185,7 @@ More reads are classified, and now we can see most of the unknown reads are expl
     }
 }
 ```
+
+More reads have been classified, and now we can see most of the unknown reads are explained by the high volume of primer artefacts present in the input file.
 
 Since Restrander doesn't know which library preparation kit was used to produce your data, it won't fail when provided with the wrong config, but the results may be spurious. Always double-check that your config file matches your library preparation method!
