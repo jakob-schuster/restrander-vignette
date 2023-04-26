@@ -132,7 +132,7 @@ These statistics are useful, as they quantify the read orientations and artefact
 
 #### Customising the configuration
 
-In the previous example, our output stats indicate that Restrander is identifying some artefacts in our data. This setting and many others can be changed in the configuration file, which describes the full pipeline of operations Restrander will use when classifying reads. Opening `restrander/config/PCB109.json`, we see:
+In the previous example, our output stats indicate that Restrander is identifying artefacts in our input data. This setting and many others can be changed in the configuration file, which describes the full pipeline of operations Restrander will use when classifying reads. Opening `restrander/config/PCB109.json`, we see:
 
 ```json
 {
@@ -157,9 +157,20 @@ In the previous example, our output stats indicate that Restrander is identifyin
 }
 ```
 
-While searching for primers, the line `"report-artefacts": true` specifies that we would like to quantify TSO and RTP primer artefacts as we parse the input file. The line `"exclude-unknowns": true` means that any unknown reads should be filtered out of the input, into a separate output file. If you check your output directory, you'll find them in an `unknowns.fq.gz` file. 
+The line `"report-artefacts": true` specifies that, while searching for primers, we would like to quantify TSO and RTP artefacts as we parse the input file. The line `"exclude-unknowns": true` means that any unknown reads (including primer artefacts) should be filtered out of the input, into a separate output file. If you check your output directory, you'll find them in an `unknowns.fq.gz` file.
 
-Let's try changing these parameters. Create a copy of `PCB109.json`. Give it some new name, and tweak the lines so that `"report-artefacts": false` and `"exclude-unknowns": false`.
+Let's try changing these parameters. Create a copy of `PCB109.json`. Give it some new name like `my-custom-PCB109.json`, and tweak the lines so that `"report-artefacts": false` and `"exclude-unknowns": false`. Now, we can run Restrander with this new config:
+
+```bash
+./restrander/restrander \
+    data/PCB109.fq.gz \
+    data/PCB109-restranded-new-config.fq.gz \
+    restrander/config/my-custom-PCB109.json \
+        > output-stats.json
+```
+
+Looking in output stats, we can see that artefacts are no longer being found. Also, because `"exclude-unknowns": false`, no unknowns file was created - successfully and unsuccessfully reoriented reads are all included in `PCB109-restranded-new-config.fq.gz`.
+
 
 ### Using different primers
 
