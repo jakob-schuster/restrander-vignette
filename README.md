@@ -157,9 +157,11 @@ In the previous example, our output stats indicate that Restrander is identifyin
 }
 ```
 
-The line `"report-artefacts": true` specifies that, while searching for primers, we would like to quantify TSO and RTP artefacts as we parse the input file. The line `"exclude-unknowns": true` means that any unknown reads (including primer artefacts) should be filtered out of the input, into a separate output file. If you check your output directory, you'll find them in an `unknowns.fq.gz` file.
+Looking closely at a couple of the lines:
+- `"report-artefacts": true` specifies that, while searching for primers, we would like to quantify TSO and RTP artefacts as we parse the input file. 
+- `"exclude-unknowns": true` means that any unknown reads (including primer artefacts) should be filtered out of the input, into a separate output file. If you check your output directory, you'll find them in an `unknowns.fq.gz` file.
 
-Let's try changing these parameters. Create a copy of `PCB109.json`. Give it some new name like `my-custom-PCB109.json`, and tweak the lines so that `"report-artefacts": false` and `"exclude-unknowns": false`. Now, we can run Restrander with this new config:
+Let's change these parameters. Create a copy of `PCB109.json`. Give it some new name like `my-custom-PCB109.json`, and tweak the lines so that `"report-artefacts": false` and `"exclude-unknowns": false`. Now, run Restrander with this new config:
 
 ```bash
 ./restrander/restrander \
@@ -169,7 +171,7 @@ Let's try changing these parameters. Create a copy of `PCB109.json`. Give it som
         > output-stats.json
 ```
 
-Looking in output stats, we can see that artefacts are no longer being found. Also, because `"exclude-unknowns": false`, no unknowns file was created - successfully and unsuccessfully reoriented reads are all included in `PCB109-restranded-new-config.fq.gz`.
+Looking at `output-stats.json`, artefacts are no longer being found and quantified. Also, since `"exclude-unknowns": false`, no unknowns file was created - all successfully and unsuccessfully oriented reads are included in `PCB109-restranded-new-config.fq.gz`.
 
 
 ### Using different primers
