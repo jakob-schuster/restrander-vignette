@@ -49,9 +49,9 @@ make
 
 ### Basic restranding
 
-First, we'll try Restrander on some PCR-cDNAseq data, sequenced using SQK-PCS109 on PromethION. A tiny sample of 2000 reads is included with this vignette. The sample can be found in `data/PCB109.fq.gz`.
+First, we'll try Restrander on some PCR-cDNAseq data, sequenced using SQK-PCS109 on PromethION. A tiny sample of 20000 reads is included with this vignette. The sample can be found in `data/PCB109.fq.gz`.
 
-Run Restrander by giving it the input file to process, the output destination to write to, and a configuration file to use.
+Run Restrander by giving it the input file, the output destination and a configuration file.
 
 ```bash
 # run this in the directory of this vignette
@@ -91,9 +91,9 @@ These statistics are useful, as they quantify the read orientations and artefact
         > output-stats.json
 ```
 
-### Configuring for different sequencing protocols
+### Configuring for different protocols
 
-Since each sequencing protocol uses its own set of primers, you'll need to use the configuration file specific to your protocol. The Restrander download includes configurations for several protocols in the `config` directory. 
+Since each library preparation protocol uses its own set of primers, you'll need to provide Restrander with the configuration file specific to your protocol. The Restrander download includes configurations for several protocols in the `config` directory. 
 
 <table>
     <thead>
@@ -130,7 +130,66 @@ Since each sequencing protocol uses its own set of primers, you'll need to use t
     </tbody>
 </table>
 
-Our file `data/10X.fq.gz` was sequenced using the 10X genomics
+Our file `data/10x.fq.gz` is a slice of single-cell long-read RNA-seq data, prepared using the 10x Genomics Chromium 3' kit. For demonstration, let's try using the default `PCB109.json`:
+
+```bash
+./restrander/restrander \
+    data/10x.fq.gz \
+    data/10x-restranded-wrong-primers.fq.gz \
+    restrander/config/PCB109.json \
+        > 10x-wrong-primers-stats.json
+```
+
+Looking at the output stats, we see that most reads were still classified, due to the polyA/T tail presence common across both protocols. However, there's a higher number of unknown reads than we would like, and there's almost no primer artefacts since we were searching for the wrong primers:
+
+```json
+{
+    "stats": {
+        "artefactStats": {
+            "RTP-RTP": 1,
+            "TSO-TSO": 1,
+            "no artefact": 19998
+        },
+        "strandStats": {
+            "+": 6850,
+            "-": 6434,
+            "?": 6716
+        },
+        "totalReads": 20000
+    }
+}
+```
+
+Now, try with the right config file, `10X-3prime.json`:
+
+```bash
+./restrander/restrander \
+    data/10x.fq.gz \
+    data/10x-restranded-correct-primers.fq.gz \
+    restrander/config/10X-3prime.json \
+        > 10x-correct-primers-stats.json
+```
+
+More reads are categorised, and we can see that there were a lot of primer artefacts present in the input file:
+
+```json
+{
+    "stats": {
+        "artefactStats": {
+            "RTP-RTP": 129,
+            "TSO-TSO": 2046,
+            "no artefact": 17825
+        },
+        "strandStats": {
+            "+": 8970,
+            "-": 7005,
+            "?": 4025
+        },
+        "totalReads": 20000
+    }
+}
+```
+
 
 ## Advanced usage
 
