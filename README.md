@@ -12,7 +12,9 @@ A vignette, tutorial and guide for the read orientation software, [Restrander](h
     - [Configuration files](#configuration-files)
     - [Basic restranding](#basic-restranding)
         - [Output statistics](#output-statistics)
-        - [Customising the configuration](#customising-the-configuration)
+    - [Customising the configuration](#customising-the-configuration)
+        - [Enabling artefact detection](#artefact-detection)
+        - [Enabling artefact detection](#artefact-detection)
     - [Lower quality data](#lower-quality-data)
     - [Trimmed data](#trimmed-data)
 
@@ -130,9 +132,9 @@ These statistics are useful, as they quantify the read orientations and artefact
         > output-stats.json
 ```
 
-#### Customising the configuration
+### Customising the configuration
 
-In the previous example, our output stats indicate that Restrander is identifying artefacts in our input data. This setting and many others can be changed in the configuration file, which describes the full pipeline of operations Restrander will use when classifying reads. Opening `restrander/config/PCB109.json`, we see:
+The configuration file describes the full pipeline of operations used by Restrander to classify reads. By tweaking their config file, users can specialise Restrander's behaviour to their needs. The config file is in the `json` format:
 
 ```json
 {
@@ -152,12 +154,16 @@ In the previous example, our output stats indicate that Restrander is identifyin
         }
     ],
     "silent": false,
-    "exclude-unknowns": true,
+    "exclude-unknowns": false,
     "error-rate": 0.25
 }
 ```
 
-Looking closely at a couple of the lines:
+#### Disabling artefact detection
+
+In our first example, the output stats indicate that Restrander is identifying artefacts in our input data. We can disable this function through the config.
+
+Looking closely at the config:
 - `"report-artefacts": true` specifies that, while searching for primers, we would like to quantify TSO and RTP artefacts as we parse the input file. 
 - `"exclude-unknowns": true` means that any unknown reads (including primer artefacts) should be filtered out of the input, into a separate output file. If you check your output directory, you'll find them in an `unknowns.fq.gz` file.
 
@@ -171,8 +177,9 @@ Let's change these parameters. Create a copy of `PCB109.json`. Give it some new 
         > output-stats.json
 ```
 
-Looking at `output-stats.json`, artefacts are no longer being found and quantified. Also, since `"exclude-unknowns": false`, no unknowns file was created - all successfully and unsuccessfully oriented reads are included in `PCB109-restranded-new-config.fq.gz`.
+Looking at `output-stats.json`, we see that artefacts are no longer being found and quantified. Also, since `"exclude-unknowns": false`, no unknowns file was created - all successfully and unsuccessfully oriented reads are included in `PCB109-restranded-new-config.fq.gz`.
 
+When you create a custom configuration, it's a good idea to store it with the 
 
 ### Using different primers
 
